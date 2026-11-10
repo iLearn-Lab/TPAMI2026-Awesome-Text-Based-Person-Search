@@ -1,1454 +1,594 @@
+<a id="awesome-text-based-person-search"></a>
+
+# Awesome Text-Based Person Search [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+<h3 align="center">
+🔥 <a href="https://doi.org/10.1109/TPAMI.2026.3734830">A Survey on Text-Based Person Search</a>
+</h3>
+
+<div align="center">
+  <p>
+    <a href="mailto:shihaitao1111@gmail.com">Haitao Shi</a><sup>1</sup>, <a href="mailto:mengliu.sdu@gmail.com">Meng Liu</a><sup>1</sup>, <a href="mailto:liyongqi0@gmail.com">Yongqi Li</a><sup>2</sup>, <a href="mailto:hanxianjing2018@gmail.com">Xianjing Han</a><sup>3</sup>, <a href="mailto:hyyuan@st.cupk.edu.cn">Yangyuan He</a><sup>4</sup>, <a href="mailto:nieliqiang@gmail.com">Liqiang Nie</a><sup>5</sup>
+  </p>
+  <p>
+    <sup>1</sup>Shandong University, <sup>2</sup>School of Electrical and Electronic Engineering, Nanyang Technological University,<br>
+    <sup>3</sup>Grab-NUS AI Lab, National University of Singapore, <sup>4</sup>China University of Petroleum-Beijing at Karamay,<br>
+    <sup>5</sup>Harbin Institute of Technology (Shenzhen)
+  </p>
+  <p>
+    <a href="resources/TBPS-Task.png"><img src="resources/TBPS-Task.png" alt="Figure 1. Fundamental distinctions among person re-identification, image-text retrieval, and text-based person search." width="800"></a><br>
+    <em>Fig. 1. Fundamental distinctions among Re-ID, ITR, and TBPS.</em>
+  </p>
+</div>
+
+Text-Based Person Search (TBPS) aims to retrieve images of a target pedestrian from a large-scale gallery using **free-form natural-language descriptions**. Unlike image-based person re-identification (Re-ID) and general image-text retrieval (ITR), TBPS requires **fine-grained, identity-sensitive alignment** between textual cues and pedestrian appearance, including clothing, accessories, and local body regions.
+
+<div align="center">
+  <p>
+    <a href="resources/TBPS-Pipeline.png"><img src="resources/TBPS-Pipeline.png" alt="Figure 2. General TBPS training pipeline with image and text encoders, external knowledge, cross-modal interaction, metric learning, and learning objectives." width="800"></a><br>
+    <em>Fig. 2. General training pipeline for TBPS.</em>
+  </p>
+</div>
+
+A typical TBPS framework combines **visual and textual encoders**, **cross-modal interaction**, and **learning objectives** to learn identity-discriminative representations. External knowledge can provide additional semantic guidance. Our survey organizes representative methods along four complementary perspectives: external knowledge, learning objectives, encoder architectures, and modality interaction.
+
+
+## News
+
+- [2026] The survey has been accepted for publication in [IEEE TPAMI](https://doi.org/10.1109/TPAMI.2026.3734830).
+
 ## Table of Contents
 
-- [1️⃣ Taxonomy of TBPS Approaches](#1%EF%B8%8F%E2%83%A3-taxonomy-of-tbps-approaches)
-  - [External Knowledge](#external-knowledge)
-  - [Learning Objectives](#learning-objectives)
-  - [Encoder](#encoder)
-  - [Modality Interaction](#modality-interaction)
-- [2️⃣ Dataset](#2%EF%B8%8F%E2%83%A3-dataset)
-  - [Standard TBPS Benchmarks](#standard-tbps-benchmarks)
-  - [Multimodal Retrieval Datasets](#multimodal-retrieval-datasets)
-  - [Large-Scale Pre-training Datasets](#large-scale-pre-training-datasets)
-  - [Cross-Lingual Datasets](#cross-lingual-datasets)
+- [Taxonomy of TBPS Approaches](#taxonomy-of-tbps-approaches)
+- [Datasets](#2-datasets)
 
----
+## Taxonomy of TBPS Approaches
 
-## 1️⃣ Taxonomy of TBPS Approaches
+The four perspectives overlap; cross-category entries count once in the distinct-title total. Papers are grouped by year in descending order within each module.
 
-### External Knowledge
+### *1. External Knowledge*
 
-#### Pose Knowledge
+> [!NOTE]
+> #### *1.1. Pose Knowledge*
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Cascade%20Attention%20Network%20for%20Person%20Search%3A%20Both%20Image%20and%20Text-Image%20Similarity%20Selection"><strong>Cascade Attention Network for Person Search: Both Image and Text-Image Similarity Selection</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CAN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2018</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Pose-guided%20Multi-granularity%20Attention%20Network%20for%20Text-based%20Person%20Search"><strong>Pose-guided Multi-granularity Attention Network for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PMA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AAAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multi-level%20Network%20Based%20on%20Text%20Attention%20and%20Pose-guided%20for%20Person%20Re-ID"><strong>Multi-level Network Based on Text Attention and Pose-guided for Person Re-ID</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PAMN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICONIP</td>
-    </tr>
-  </tbody>
-</table>
+#### 2023
 
-#### Attribute Knowledge
+- `[2023 ICONIP]` **Multi-level Network Based on Text Attention and Pose-guided for Person Re-ID (PAMN)** *Xi Wang, Canlong Zhang, Zhixin Li, Zhiwen Wang*  
+  [[paper]](https://doi.org/10.1007/978-981-99-1648-1_9)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Adversarial%20Attribute-Text%20Embedding%20for%20Person%20Search%20with%20Natural%20Language%20Query"><strong>Adversarial Attribute-Text Embedding for Person Search with Natural Language Query</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">AATE</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Text-based%20Person%20Search%20via%20Attribute-aided%20Matching"><strong>Text-based Person Search via Attribute-aided Matching</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CMAAM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">WACV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=ViTAA%3A%20Visual-Textual%20Attributes%20Alignment%20in%20Person%20Search%20by%20Natural%20Language"><strong>ViTAA: Visual-Textual Attributes Alignment in Person Search by Natural Language</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ViTAA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Heterogenous%20Center%20Alignment%20of%20Dual-path%20Features%20for%20Text-image%20Person%20Re-identification"><strong>Heterogenous Center Alignment of Dual-path Features for Text-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">DP-HCA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AIIPCC</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Embedding%20Learning%20by%20Virtual%20Attribute%20Decoupling%20for%20Text-based%20Person%20Search"><strong>Improving Embedding Learning by Virtual Attribute Decoupling for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">iVAD</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Neural Computing and Applications</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Efficient%20Text-based%20Person%20Search%20via%20Single-stage%20Identity-guided%20Attribute%20Parsing%20and%20Alignment"><strong>Efficient Text-based Person Search via Single-stage Identity-guided Attribute Parsing and Alignment</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">IAPA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICPR</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Cross-modal%20Co-occurrence%20Attributes%20Alignments%20for%20Person%20Search%20by%20Language"><strong>Cross-modal Co-occurrence Attributes Alignments for Person Search by Language</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">C2A2</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2020
 
-#### Color Knowledge
+- `[2020 AAAI]` **Pose-guided Multi-granularity Attention Network for Text-based Person Search (PMA)** *Ya Jing, Chenyang Si, Junbo Wang, Wei Wang, Liang Wang, Tieniu Tan*  
+  [[paper]](https://arxiv.org/abs/1809.08440v3)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://openaccess.thecvf.com/content/ICCV2021/html/Wu_Language-Guided_Person_Search_via_Color_Reasoning_ICCV_2021_paper.html"><strong>LapsCore: Language-guided Person Search via Color Reasoning</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">LapsCore</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=CAIBC%3A%20Capturing%20All-round%20Information%20Beyond%20Color%20for%20Text-based%20Person%20Retrieval"><strong>CAIBC: Capturing All-round Information Beyond Color for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CAIBC</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2018
 
-#### Body Parts Knowledge
+- `[2018 arXiv]` **Cascade Attention Network for Person Search: Both Image and Text-Image Similarity Selection (CAN)** *Ya Jing, Chenyang Si, Junbo Wang, Wei Wang, Liang Wang, Tieniu Tan*  
+  [[paper]](https://arxiv.org/abs/1809.08440v1)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Description-based%20Person%20Search%20with%20Multi-grained%20Matching%20Networks"><strong>Description-based Person Search with Multi-grained Matching Networks</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Tri-MGF</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Displays</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=BiLMa%3A%20Bidirectional%20Local-matching%20for%20Text-based%20Person%20Re-identification"><strong>BiLMa: Bidirectional Local-matching for Text-based Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">BiLMa</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICCV Workshops</td>
-    </tr>
-  </tbody>
-</table>
+> [!NOTE]
+> #### *1.2. Attribute Knowledge*
 
-### Learning Objectives
+#### 2022
 
-#### Identity (ID) Loss
+- `[2022 MM]` **Cross-modal Co-occurrence Attributes Alignments for Person Search by Language (C2A2)** *Kai Niu, Linjiang Huang, Yan Huang, Peng Wang, Liang Wang, Yanning Zhang*  
+  [[paper]](https://doi.org/10.1145/3503161.3547753)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Look%20Before%20You%20Leap%3A%20Improving%20Text-based%20Person%20Retrieval%20by%20Learning%20a%20Consistent%20Cross-modal%20Common%20Manifold"><strong>Look Before You Leap: Improving Text-based Person Retrieval by Learning a Consistent Cross-modal Common Manifold</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">LBUL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Fusing%20Two%20Directions%20in%20Cross-domain%20Adaption%20for%20Real%20Life%20Person%20Search%20by%20Language"><strong>Fusing Two Directions in Cross-domain Adaption for Real Life Person Search by Language</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">FTD</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2019</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICCV Workshops</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Relation-aware%20Aggregation%20Network%20with%20Auxiliary%20Guidance%20for%20Text-based%20Person%20Search"><strong>Relation-aware Aggregation Network with Auxiliary Guidance for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">RANAG</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">WWW</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Learning%20Granularity-unified%20Representations%20for%20Text-to-image%20Person%20Re-identification"><strong>Learning Granularity-unified Representations for Text-to-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">LGUR</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-  </tbody>
-</table>
+- `[2022 ICPR]` **Efficient Text-based Person Search via Single-stage Identity-guided Attribute Parsing and Alignment (IAPA)** *Tian-Yu Liu, Chao Zhu, Liu Yang*  
+  [[paper]](https://doi.org/10.1109/icpr56361.2022.9956569)
 
-#### Matching Loss
+- `[2022 AIIPCC]` **Heterogenous Center Alignment of Dual-path Features for Text-image Person Re-identification (DP-HCA)** *Xianju Wang, Ronald S. Cordova*  
+  [[paper]](https://doi.org/10.1109/aiipcc57291.2022.00039)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Deep%20Cross-modal%20Projection%20Learning%20for%20Image-Text%20Matching"><strong>Deep Cross-modal Projection Learning for Image-Text Matching</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CMPM+CMPC</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2018</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2312.01745"><strong>Cross-modal Adaptive Dual Association for Text-to-image Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CADA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/LinDixuan/CADA">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-  </tbody>
-</table>
+- `[2022 Neural Computing and Applications]` **Improving Embedding Learning by Virtual Attribute Decoupling for Text-based Person Search (iVAD)** *Chengji Wang, Zhiming Luo, Yaojin Lin, Shaozi Li*  
+  [[paper]](https://doi.org/10.1007/s00521-021-06734-9)
 
-#### Ranking Loss
+#### 2020
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Visual-Textual%20Association%20with%20Hardest%20and%20Semi-hard%20Negative%20Pairs%20Mining%20for%20Person%20Search"><strong>Visual-Textual Association with Hardest and Semi-hard Negative Pairs Mining for Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">HSNM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2019</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Mining%20False%20Positive%20Examples%20for%20Text-based%20Person%20Re-identification"><strong>Mining False Positive Examples for Text-based Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MFPE</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-  </tbody>
-</table>
+- `[2020 TMM]` **Adversarial Attribute-Text Embedding for Person Search with Natural Language Query (AATE)** *Zheng-Jun Zha, Jiawei Liu, Di Chen, Feng Wu*  
+  [[paper]](https://doi.org/10.1109/tmm.2020.2972168)
 
-#### Adversarial Loss
+- `[2020 WACV]` **Text-based Person Search via Attribute-aided Matching (CMAAM)** *Surbhi Aggarwal, R. Venkatesh Babu, Anirban Chakraborty*  
+  [[paper]](https://openaccess.thecvf.com/content_WACV_2020/html/Aggarwal_Text-based_Person_Search_via_Attribute-aided_Matching_WACV_2020_paper.html)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Deep%20Adversarial%20Graph%20Attention%20Convolution%20Network%20for%20Text-based%20Person%20Search"><strong>Deep Adversarial Graph Attention Convolution Network for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">A-GANet</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2019</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=ASPD-Net%3A%20Self-aligned%20Part%20Mask%20for%20Improving%20Text-based%20Person%20Re-identification%20with%20Adversarial%20Representation%20Learning"><strong>ASPD-Net: Self-aligned Part Mask for Improving Text-based Person Re-identification with Adversarial Representation Learning</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ASPD-Net</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">EAAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=AMEN%3A%20Adversarial%20Multi-space%20Embedding%20Network%20for%20Text-based%20Person%20Re-identification"><strong>AMEN: Adversarial Multi-space Embedding Network for Text-based Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">AMEN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">PRCV</td>
-    </tr>
-  </tbody>
-</table>
+- `[2020 ECCV]` **ViTAA: Visual-Textual Attributes Alignment in Person Search by Natural Language (ViTAA)** *Zhe Wang, Zhiyuan Fang, Jun Wang, Yezhou Yang*  
+  [[paper]](https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1593_ECCV_2020_paper.php) [[code]](https://github.com/Jarr0d/ViTAA)
 
-#### MLM/MIM Loss
+> [!NOTE]
+> #### *1.3. Color Knowledge*
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2306.02898"><strong>Towards Unified Text-based Person Retrieval: A Large-scale Multi-Attribute and Language Search Benchmark</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">APTM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/Shuyu-XJTU/APTM">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://ojs.aaai.org/index.php/AAAI/article/view/28585"><strong>Unifying Multi-Modal Uncertainty Modeling and Semantic Alignment for Text-to-Image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MLM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AAAI</td>
-    </tr>
-  </tbody>
-</table>
+#### 2022
 
-#### Other Loss
+- `[2022 MM]` **CAIBC: Capturing All-round Information Beyond Color for Text-based Person Retrieval (CAIBC)** *Zijie Wang, Aichun Zhu, Jingyi Xue, Xili Wan, Chao Liu, Tian Wang, Yifeng Li*  
+  [[paper]](https://arxiv.org/abs/2209.05773v1)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multiplicative%20Angular%20Margin%20Loss%20for%20Text-based%20Person%20Search"><strong>Multiplicative Angular Margin Loss for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PSW+MAM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MMAsia</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=DCEL%3A%20Deep%20Cross-modal%20Evidential%20Learning%20for%20Text-based%20Person%20Retrieval"><strong>DCEL: Deep Cross-modal Evidential Learning for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">DCEL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/CFM-MSG/Code_DCEL">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://ieeexplore.ieee.org/document/10274673/"><strong>Multi-granularity Matching Transformer for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TransTPS</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/baolp/TransTPS">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2021
 
-### Encoder
+- `[2021 ICCV]` **LapsCore: Language-guided Person Search via Color Reasoning (LapsCore)** *Yushuang Wu, Zizheng Yan, Xiaoguang Han, Guanbin Li, Changqing Zou, Shuguang Cui*  
+  [[paper]](https://openaccess.thecvf.com/content/ICCV2021/html/Wu_LapsCore_Language-Guided_Person_Search_via_Color_Reasoning_ICCV_2021_paper.html)
 
-#### CNN-RNN/CNN-BERT Encoders
+> [!NOTE]
+> #### *1.4. Body Parts Knowledge*
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://openaccess.thecvf.com/content_cvpr_2017/html/Li_Person_Search_With_CVPR_2017_paper.html"><strong>Person Search with Natural Language Description</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GNA-RNN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2017</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">CVPR</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Text-based%20Person%20Search%20by%20Spatial%20Matching%20and%20Adaptive%20Threshold"><strong>Improving Text-based Person Search by Spatial Matching and Adaptive Threshold</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PWM+ATH</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2018</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">WACV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=A%20Convolutional%20Baseline%20for%20Person%20Re-identification%20Using%20Vision%20and%20Language%20Descriptions"><strong>A Convolutional Baseline for Person Re-identification Using Vision and Language Descriptions</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">VLCCA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Adversarial%20Representation%20Learning%20for%20Text-to-image%20Matching"><strong>Adversarial Representation Learning for Text-to-image Matching</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TIMAM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2019</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=TIPCB%3A%20A%20Simple%20but%20Effective%20Part-based%20Convolutional%20Baseline%20for%20Text-based%20Person%20Search"><strong>TIPCB: A Simple but Effective Part-based Convolutional Baseline for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TIPCB</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Neurocomputing</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Conditional%20Feature%20Learning%20Based%20Transformer%20for%20Text-based%20Person%20Search"><strong>Conditional Feature Learning Based Transformer for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CFLT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Dual-path%20Convolutional%20Image-Text%20Embeddings%20with%20Instance%20Loss"><strong>Dual-path Convolutional Image-Text Embeddings with Instance Loss</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Dual-path CNN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TOMM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2023
 
-#### Transformer-Based Encoders
+- `[2023 ICCV Workshops]` **BiLMa: Bidirectional Local-matching for Text-based Person Re-identification (BiLMa)** *Takuro Fujii, Shuhei Tarashima*  
+  [[paper]](https://arxiv.org/abs/2309.04675v1)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Contrastive%20Transformer%20Learning%20with%20Proximity%20Data%20Generation%20for%20Text-based%20Person%20Search"><strong>Contrastive Transformer Learning with Proximity Data Generation for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PDG</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TCSVT</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Learning%20Semantic-aligned%20Feature%20Representation%20for%20Text-based%20Person%20Search"><strong>Learning Semantic-aligned Feature Representation for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">SAPF</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICASSP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Text-based%20Person%20Re-ID%20by%20Saliency%20Mask%20and%20Dynamic%20Label%20Smoothing"><strong>Text-based Person Re-ID by Saliency Mask and Dynamic Label Smoothing</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">SMDLS</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICONIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2210.10276"><strong>CLIP-driven Fine-grained Text-Image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CFine</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/shuanglinyan/CFine">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-  </tbody>
-</table>
+#### 2021
 
-#### VLM-Based Encoders
+- `[2021 Displays]` **Description-based Person Search with Multi-grained Matching Networks (Tri-MGF)** *Ji Zhu, Hua Yang, Jia Wang, Wenjun Zhang*  
+  [[paper]](https://doi.org/10.1016/j.displa.2021.102039)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2303.04497"><strong>Exploiting the Textual Potential from Vision-Language Pre-training for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TP-TPS</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2308.10045"><strong>An Empirical Study of CLIP for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TBPS-CLIP</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/Flame-Chasers/TBPS-CLIP">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AAAI</td>
-    </tr>
-  </tbody>
-</table>
+### *2. Learning Objectives*
 
-### Modality Interaction
+> [!NOTE]
+> #### *2.1. Identity (ID) Loss*
 
-#### Intra-Modality Interaction
+#### 2022
 
-##### Visual Intra-modal Interaction
+- `[2022 MM]` **Learning Granularity-unified Representations for Text-to-image Person Re-identification (LGUR)** *Zhiyin Shao, Xinyu Zhang, Meng Fang, Zhifeng Lin, Jian Wang, Changxing Ding*  
+  [[paper]](https://arxiv.org/abs/2207.07802v1) [[code]](https://github.com/ZhiyinShao-H/LGUR)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://ojs.aaai.org/index.php/AAAI/article/view/28101"><strong>Adaptive Uncertainty-based Learning for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">AUL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/CFM-MSG/Code-AUL">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AAAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=EESSO%3A%20Exploiting%20Extreme%20and%20Smooth%20Signals%20via%20Omni-frequency%20Learning%20for%20Text-based%20Person%20Retrieval"><strong>EESSO: Exploiting Extreme and Smooth Signals via Omni-frequency Learning for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">EESSO</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Image and Vision Computing</td>
-    </tr>
-  </tbody>
-</table>
+- `[2022 MM]` **Look Before You Leap: Improving Text-based Person Retrieval by Learning a Consistent Cross-modal Common Manifold (LBUL)** *Zijie Wang, Aichun Zhu, Jingyi Xue, Xili Wan, Chao Liu, Tian Wang, Yifeng Li*  
+  [[paper]](https://arxiv.org/abs/2209.06209v1)
 
-##### Textual Intra-modal Interaction
+- `[2022 WWW]` **Relation-aware Aggregation Network with Auxiliary Guidance for Text-based Person Search (RANAG)** *Pengpeng Zeng, Shuaiqi Jing, Jingkuan Song, Kaixuan Fan, Xiangpeng Li, Liansuo We, Yuan Guo*  
+  [[paper]](https://doi.org/10.1007/s11280-021-00953-9)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Textual%20Dependency%20Embedding%20for%20Person%20Search%20by%20Language"><strong>Textual Dependency Embedding for Person Search by Language</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TDE</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Refined%20Knowledge%20Transfer%20for%20Language-based%20Person%20Search"><strong>Refined Knowledge Transfer for Language-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">RKT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multi-modal%20Reference%20Learning%20for%20Fine-grained%20Text-to-image%20Retrieval"><strong>Multi-modal Reference Learning for Fine-grained Text-to-image Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MMRef</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2025</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2019
 
-##### Dual Intra-modal Interaction
+- `[2019 ICCV Workshops]` **Fusing Two Directions in Cross-domain Adaption for Real Life Person Search by Language (FTD)** *Kai Niu, Yan Huang, Liang Wang*  
+  [[paper]](https://doi.org/10.1109/iccvw.2019.00225)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Learning%20Comprehensive%20Representations%20with%20Richer%20Self%20for%20Text-to-image%20Person%20Re-identification"><strong>Learning Comprehensive Representations with Richer Self for Text-to-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">LCR²S</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=TIPCB%3A%20A%20Simple%20but%20Effective%20Part-based%20Convolutional%20Baseline%20for%20Text-based%20Person%20Search"><strong>TIPCB: A Simple but Effective Part-based Convolutional Baseline for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TIPCB</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Neurocomputing</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Divide-and-merge%20the%20Embedding%20Space%20for%20Cross-modality%20Person%20Search"><strong>Divide-and-merge the Embedding Space for Cross-modality Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">DME</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Neurocomputing</td>
-    </tr>
-  </tbody>
-</table>
+> [!NOTE]
+> #### *2.2. Matching Loss*
 
-#### Inter-Modality Interaction
+#### 2024
 
-##### Global Feature Interaction
+- `[2024 TMM]` **Cross-modal Adaptive Dual Association for Text-to-image Person Retrieval (CADA)** *Dixuan Lin, Yi-Xing Peng, Jingke Meng, Wei-Shi Zheng*  
+  [[paper]](https://arxiv.org/abs/2312.01745v1) [[code]](https://github.com/LinDixuan/CADA)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Deep%20Visual%20Representation%20for%20Person%20Re-identification%20by%20Global%20and%20Local%20Image-Language%20Association"><strong>Improving Deep Visual Representation for Person Re-identification by Global and Local Image-Language Association</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GL-ILA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2018</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Person%20Re-identification%20from%20Text%20to%20Image%20Based%20on%20Mutual%20Teaching"><strong>Person Re-identification from Text to Image Based on Mutual Teaching</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MTReID</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AIEA</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Granularity-aware%20Hyperbolic%20Representation%20for%20Text-based%20Person%20Search"><strong>Granularity-aware Hyperbolic Representation for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GAHR</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2025</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIFS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Description-based%20Person%20Re-identification%20by%20Multi-granularity%20Image-Text%20Alignments"><strong>Improving Description-based Person Re-identification by Multi-granularity Image-Text Alignments</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MIA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-  </tbody>
-</table>
+#### 2018
 
-##### Local Feature Interaction
+- `[2018 ECCV]` **Deep Cross-modal Projection Learning for Image-Text Matching (CMPM+CMPC)** *Ying Zhang, Huchuan Lu*  
+  [[paper]](https://openaccess.thecvf.com/content_ECCV_2018/html/Ying_Zhang_Deep_Cross-Modal_Projection_ECCV_2018_paper.html) [[code]](https://github.com/YingZhangDUT/Cross-Modal-Projection-Learning)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Cross-modal%20Knowledge%20Adaptation%20for%20Language-based%20Person%20Search"><strong>Cross-modal Knowledge Adaptation for Language-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CMKA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Text-based%20Person%20Search%20via%20Local-Relational-Global%20Fine-grained%20Alignment"><strong>Text-based Person Search via Local-Relational-Global Fine-grained Alignment</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CM-LRGNet</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">KBS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Pedestrian-specific%20Bipartite-aware%20Similarity%20Learning%20for%20Text-based%20Person%20Retrieval"><strong>Pedestrian-specific Bipartite-aware Similarity Learning for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PBSL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multi-level%20Part-aware%20Feature%20Disentangling%20for%20Text-based%20Person%20Search"><strong>Multi-level Part-aware Feature Disentangling for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MPFD</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICME</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Contextual%20Non-local%20Alignment%20over%20Full-scale%20Representation%20for%20Text-based%20Person%20Search"><strong>Contextual Non-local Alignment over Full-scale Representation for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">NAFS with RVN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Transformer-based%20Language-Person%20Search%20with%20Multiple%20Region%20Slicing"><strong>Transformer-based Language-Person Search with Multiple Region Slicing</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">T-MRS</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TCSVT</td>
-    </tr>
-  </tbody>
-</table>
+> [!NOTE]
+> #### *2.3. Ranking Loss*
 
-##### Multi-Granularity Feature Interaction
+#### 2023
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Description-based%20Person%20Re-identification%20by%20Multi-granularity%20Image-Text%20Alignments"><strong>Improving Description-based Person Re-identification by Multi-granularity Image-Text Alignments</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MIA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Hierarchical%20Gumbel%20Attention%20Network%20for%20Text-based%20Person%20Search"><strong>Hierarchical Gumbel Attention Network for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">HGAN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2020</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Asymmetric%20Cross-scale%20Alignment%20for%20Text-based%20Person%20Search"><strong>Asymmetric Cross-scale Alignment for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ACSA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TMM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Granularity-aware%20Hyperbolic%20Representation%20for%20Text-based%20Person%20Search"><strong>Granularity-aware Hyperbolic Representation for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GAHR</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2025</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIFS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Deep%20Visual%20Representation%20for%20Person%20Re-identification%20by%20Global%20and%20Local%20Image-Language%20Association"><strong>Improving Deep Visual Representation for Person Re-identification by Global and Local Image-Language Association</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GL-ILA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2018</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Text-based%20Person%20Search%20via%20Multi-granularity%20Embedding%20Learning"><strong>Text-based Person Search via Multi-granularity Embedding Learning</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MGEL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">IJCAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multi-level%20Cross-modality%20Learning%20Framework%20for%20Text-based%20Person%20Re-identification"><strong>Multi-level Cross-modality Learning Framework for Text-based Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MCL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Electronics Letters</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Feature%20Semantic%20Alignment%20and%20Information%20Supplement%20for%20Text-based%20Person%20Search"><strong>Feature Semantic Alignment and Information Supplement for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ESFE+ISN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Frontiers in Physics</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Text-based%20Person%20Search%20via%20Local-Relational-Global%20Fine-grained%20Alignment"><strong>Text-based Person Search via Local-Relational-Global Fine-grained Alignment</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CM-LRGNet</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">KBS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Image-specific%20Information%20Suppression%20and%20Implicit%20Local%20Alignment%20for%20Text-based%20Person%20Search"><strong>Image-specific Information Suppression and Implicit Local Alignment for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MANet</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TNNLS</td>
-    </tr>
-  </tbody>
-</table>
+- `[2023 ICIP]` **Mining False Positive Examples for Text-based Person Re-identification (MFPE)** *Wenhao Xu, Zhiyin Shao, Changxing Ding*  
+  [[paper]](https://arxiv.org/abs/2303.08466v1) [[code]](https://github.com/wh-xu1/MFPE)
 
-##### Proxy Task-Guided Interaction
+#### 2019
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Joint%20Token%20and%20Feature%20Alignment%20Framework%20for%20Text-based%20Person%20Search"><strong>Joint Token and Feature Alignment Framework for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">TFAF</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">IEEE SPL</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=See%20Finer%2C%20See%20More%3A%20Implicit%20Modality%20Alignment%20for%20Text-based%20Person%20Retrieval"><strong>See Finer, See More: Implicit Modality Alignment for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">IVT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV Workshops</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2304.02278"><strong>Calibrating Cross-modal Feature for Text-based Person Searching</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">CMCalib</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Unleashing%20the%20Imagination%20of%20Text%3A%20A%20Novel%20Framework%20for%20Text-to-image%20Person%20Retrieval%20via%20Exploring%20the%20Power%20of%20Words"><strong>Unleashing the Imagination of Text: A Novel Framework for Text-to-image Person Retrieval via Exploring the Power of Words</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">UIT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=LAIP%3A%20Learning%20Local%20Alignment%20from%20Image-Phrase%20Modeling%20for%20Text-based%20Person%20Search"><strong>LAIP: Learning Local Alignment from Image-Phrase Modeling for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">LAIP</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICME</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=MARS%3A%20Paying%20More%20Attention%20to%20Visual%20Attributes%20for%20Text-based%20Person%20Search"><strong>MARS: Paying More Attention to Visual Attributes for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MARS</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Learning%20Transferable%20Pedestrian%20Representation%20from%20Multimodal%20Information%20Supervision"><strong>Learning Transferable Pedestrian Representation from Multimodal Information Supervision</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">VAL-PAT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">arXiv</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2303.12501"><strong>Cross-modal Implicit Relation Reasoning and Aligning for Text-to-image Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">IRRA</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/anosorae/IRRA">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">CVPR</td>
-    </tr>
-  </tbody>
-</table>
+- `[2019 arXiv]` **Visual-Textual Association with Hardest and Semi-hard Negative Pairs Mining for Person Search (HSNM)** *Jing Ge, Guangyu Gao, Zhen Liu*  
+  [[paper]](https://arxiv.org/abs/1912.03083v1)
 
-##### Large Model-Driven Interaction
+> [!NOTE]
+> #### *2.4. Adversarial Loss*
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2305.08386"><strong>PLIP: Language-Image Pre-training for Person Representation Learning</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PLIP</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/zplusdragon/plip">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">NeurIPS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://arxiv.org/abs/2309.01420"><strong>Unified Pre-training with Pseudo Texts for Text-to-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">UniPT</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/ZhiyinShao-H/UniPT">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ICCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://openreview.net/forum?id=NndGM6iDip"><strong>Fine-grained Semantic Alignment with Transferred Person-SAM for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">SAP-SAM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;"><a href="https://github.com/xbdxwyh/SAP-SAM-main">project</a></td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Human-centered%20Interactive%20Learning%20via%20MLLMs%20for%20Text-to-image%20Person%20Re-identification"><strong>Human-centered Interactive Learning via MLLMs for Text-to-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ICL</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2025</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">CVPR</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Diverse%20Person%3A%20Customize%20Your%20Own%20Dataset%20for%20Text-based%20Person%20Search"><strong>Diverse Person: Customize Your Own Dataset for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">DP</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2024</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">AAAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Modeling%20Thousands%20of%20Human%20Annotators%20for%20Generalizable%20Text-to-image%20Person%20Re-identification"><strong>Modeling Thousands of Human Annotators for Generalizable Text-to-image Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">HAM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2025</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">CVPR</td>
-    </tr>
-  </tbody>
-</table>
+#### 2022
 
-#### Hybrid Interaction Approach
+- `[2022 EAAI]` **ASPD-Net: Self-aligned Part Mask for Improving Text-based Person Re-identification with Adversarial Representation Learning (ASPD-Net)** *Zijie Wang, Jingyi Xue, Xili Wan, Aichun Zhu, Yifeng Li, Xiaomei Zhu, Fangqiang Hu*  
+  [[paper]](https://doi.org/10.1016/j.engappai.2022.105419)
 
-<table width="1200" style="table-layout: fixed; width: 1200px;">
-  <colgroup>
-    <col width="720">
-    <col width="130">
-    <col width="90">
-    <col width="110">
-    <col width="150">
-  </colgroup>
-  <thead>
-    <tr>
-      <th align="left" width="720" style="width:720px; min-width:720px; max-width:720px;">Title</th>
-      <th align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">Model</th>
-      <th align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">Date</th>
-      <th align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">Link</th>
-      <th align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Venue</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=A%20Simple%20and%20Robust%20Correlation%20Filtering%20Method%20for%20Text-based%20Person%20Search"><strong>A Simple and Robust Correlation Filtering Method for Text-based Person Search</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">SRCF</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">ECCV</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Learning%20Aligned%20Image-Text%20Representations%20Using%20Graph%20Attentive%20Relational%20Network"><strong>Learning Aligned Image-Text Representations Using Graph Attentive Relational Network</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">GARN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2021</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Improving%20Inconspicuous%20Attributes%20Modeling%20for%20Person%20Search%20by%20Language"><strong>Improving Inconspicuous Attributes Modeling for Person Search by Language</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">ASAMN</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">TIP</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=AXM-Net%3A%20Implicit%20Cross-modal%20Feature%20Alignment%20for%20Person%20Re-identification"><strong>AXM-Net: Implicit Cross-modal Feature Alignment for Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">AXM-Net</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">IAAI</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=PMG%E2%80%94Pyramidal%20Multi-granular%20Matching%20for%20Text-based%20Person%20Re-identification"><strong>PMG—Pyramidal Multi-granular Matching for Text-based Person Re-identification</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">PMG</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">Applied Sciences</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=SUM%3A%20Serialized%20Updating%20and%20Matching%20for%20Text-based%20Person%20Retrieval"><strong>SUM: Serialized Updating and Matching for Text-based Person Retrieval</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">SUM</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2022</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">KBS</td>
-    </tr>
-    <tr>
-      <td align="left" width="720" style="width:720px; min-width:720px; max-width:720px;"><a href="https://scholar.google.com/scholar?q=Multi-granularity%20Separation%20Network%20for%20Text-based%20Person%20Retrieval%20with%20Bidirectional%20Refinement%20Regularization"><strong>Multi-granularity Separation Network for Text-based Person Retrieval with Bidirectional Refinement Regularization</strong></a></td>
-      <td align="center" width="130" style="width:130px; min-width:130px; max-width:130px;">MSN-BRR</td>
-      <td align="center" width="90" style="width:90px; min-width:90px; max-width:90px;">2023</td>
-      <td align="center" width="110" style="width:110px; min-width:110px; max-width:110px;">-</td>
-      <td align="center" width="150" style="width:150px; min-width:150px; max-width:150px;">MM</td>
-    </tr>
-  </tbody>
-</table>
+#### 2021
 
----
+- `[2021 PRCV]` **AMEN: Adversarial Multi-space Embedding Network for Text-based Person Re-identification (AMEN)** *Zijie Wang, Jingyi Xue, Aichun Zhu, Yifeng Li, Mingyi Zhang, Chongliang Zhong*  
+  [[paper]](https://doi.org/10.1007/978-3-030-88007-1_38)
 
-## 2️⃣ Dataset
+#### 2019
 
-T2I: text-to-image retrieval; Bi: bidirectional retrieval; CS: closed-set; PT: pre-training only; Multi: additional modalities beyond RGB images and text.
+- `[2019 MM]` **Deep Adversarial Graph Attention Convolution Network for Text-based Person Search (A-GANet)** *Jiawei Liu, Zheng-Jun Zha, Richang Hong, Meng Wang, Yongdong Zhang*  
+  [[paper]](https://doi.org/10.1145/3343031.3350991)
+
+> [!NOTE]
+> #### *2.5. MLM/MIM Loss*
+
+#### 2024
+
+- `[2024 AAAI]` **Unifying Multi-Modal Uncertainty Modeling and Semantic Alignment for Text-to-Image Person Re-identification (MLM)** *Zhiwei Zhao, Bin Liu, Yan Lu, Qi Chu, Nenghai Yu*  
+  [[paper]](https://doi.org/10.1609/aaai.v38i7.28585)
+
+#### 2023
+
+- `[2023 MM]` **Towards Unified Text-based Person Retrieval: A Large-scale Multi-Attribute and Language Search Benchmark (APTM)** *Shuyu Yang, Yinan Zhou, Zhedong Zheng, Yaxiong Wang, Li Zhu, Yujiao Wu*  
+  [[paper]](https://arxiv.org/abs/2306.02898v4) [[code]](https://github.com/Shuyu-XJTU/APTM)
+
+> [!NOTE]
+> #### *2.6. Other Loss*
+
+#### 2024
+
+- `[2024 TMM]` **Multi-granularity Matching Transformer for Text-based Person Search (TransTPS)** *Liping Bao, Longhui Wei, Wengang Zhou, Lin Liu, Lingxi Xie, Houqiang Li, Qi Tian*  
+  [[paper]](https://doi.org/10.1109/tmm.2023.3321504)
+
+#### 2023
+
+- `[2023 MM]` **DCEL: Deep Cross-modal Evidential Learning for Text-based Person Retrieval (DCEL)** *Shenshen Li, Xing Xu, Yang Yang, Fumin Shen, Yijun Mo, Yujie Li, Heng Tao Shen*  
+  [[paper]](https://doi.org/10.1145/3581783.3612244)
+
+#### 2020
+
+- `[2020 MMAsia]` **Multiplicative Angular Margin Loss for Text-based Person Search (PSW+MAM)** *Peng Zhang, Deqiang Ouyang, Feiyu Chen, Jie Shao*  
+  [[paper]](https://doi.org/10.1145/3444685.3446314)
+
+### *3. Encoder*
+
+> [!NOTE]
+> #### *3.1. CNN-RNN/CNN-BERT Encoders*
+
+#### 2022
+
+- `[2022 TIP]` **Conditional Feature Learning Based Transformer for Text-based Person Search (CFLT)** *Chenyang Gao, Guanyu Cai, Xinyang Jiang, Feng Zheng, Jun Zhang, Yifei Gong, Fangzhou Lin, Xing Sun, Xiang Bai*  
+  [[paper]](https://doi.org/10.1109/tip.2022.3205216)
+
+- `[2022 Neurocomputing]` **TIPCB: A Simple but Effective Part-based Convolutional Baseline for Text-based Person Search (TIPCB)** *Yuhao Chen, Guoqing Zhang, Yujiang Lu, Zhenxing Wang, Yuhui Zheng*  
+  [[paper]](https://arxiv.org/abs/2105.11628v1) [[code]](https://github.com/OrangeYHChen/TIPCB)
+
+#### 2020
+
+- `[2020 arXiv]` **A Convolutional Baseline for Person Re-identification Using Vision and Language Descriptions (VLCCA)** *Ammarah Farooq, Muhammad Awais, Fei Yan, Josef Kittler, Ali Akbari, Syed Safwan Khalid*  
+  [[paper]](https://arxiv.org/abs/2003.00808v1)
+
+- `[2020 TOMM]` **Dual-path Convolutional Image-Text Embeddings with Instance Loss (Dual-path CNN)** *Zhedong Zheng, Liang Zheng, Michael Garrett, Yi Yang, Mingliang Xu, Yi-Dong Shen*  
+  [[paper]](https://arxiv.org/abs/1711.05535v4) [[code]](https://github.com/layumi/Image-Text-Embedding)
+
+#### 2019
+
+- `[2019 ICCV]` **Adversarial Representation Learning for Text-to-image Matching (TIMAM)** *Nikolaos Sarafianos, Xiang Xu, Ioannis Kakadiaris*  
+  [[paper]](https://arxiv.org/abs/1908.10534v1)
+
+#### 2018
+
+- `[2018 WACV]` **Improving Text-based Person Search by Spatial Matching and Adaptive Threshold (PWM+ATH)** *Tianlang Chen, Chenliang Xu, Jiebo Luo*  
+  [[paper]](https://doi.org/10.1109/wacv.2018.00208)
+
+#### 2017
+
+- `[2017 CVPR]` **Person Search with Natural Language Description (GNA-RNN)** *Shuang Li, Tong Xiao, Hongsheng Li, Bolei Zhou, Dayu Yue, Xiaogang Wang*  
+  [[paper]](https://openaccess.thecvf.com/content_cvpr_2017/html/Li_Person_Search_With_CVPR_2017_paper.html) [[code]](https://github.com/ShuangLI59/Person-Search-with-Natural-Language-Description)
+
+> [!NOTE]
+> #### *3.2. Transformer-Based Encoders*
+
+#### 2024
+
+- `[2024 TCSVT]` **Contrastive Transformer Learning with Proximity Data Generation for Text-based Person Search (PDG)** *Hefeng Wu, Weifeng Chen, Zhibin Liu, Tianshui Chen, Zhiguang Chen, Liang Lin*  
+  [[paper]](https://arxiv.org/abs/2311.09084v1) [[code]](https://github.com/HCPLab-SYSU/PersonSearch-CTLG)
+
+#### 2023
+
+- `[2023 TIP]` **CLIP-driven Fine-grained Text-Image Person Re-identification (CFine)** *Shuanglin Yan, Neng Dong, Liyan Zhang, Jinhui Tang*  
+  [[paper]](https://arxiv.org/abs/2210.10276v1) [[code]](https://github.com/ShuanglinYan/CFine)
+
+- `[2023 ICONIP]` **Text-based Person Re-ID by Saliency Mask and Dynamic Label Smoothing (SMDLS)** *Yonghua Pang, Canlong Zhang, Zhixin Li, Liaojie Hu*  
+  [[paper]](https://doi.org/10.1007/978-981-99-8073-4_34)
+
+#### 2022
+
+- `[2022 ICASSP]` **Learning Semantic-aligned Feature Representation for Text-based Person Search (SAPF)** *Shiping Li, Min Cao, Min Zhang*  
+  [[paper]](https://arxiv.org/abs/2112.06714v1) [[code]](https://github.com/reallsp/SAF)
+
+> [!NOTE]
+> #### *3.3. VLM-Based Encoders*
+
+#### 2024
+
+- `[2024 AAAI]` **An Empirical Study of CLIP for Text-based Person Search (TBPS-CLIP)** *Min Cao, Yang Bai, Ziyin Zeng, Mang Ye, Min Zhang*  
+  [[paper]](https://arxiv.org/abs/2308.10045v2) [[code]](https://github.com/Flame-Chasers/TBPS-CLIP)
+
+#### 2023
+
+- `[2023 arXiv]` **Exploiting the Textual Potential from Vision-Language Pre-training for Text-based Person Search (TP-TPS)** *Guanshuo Wang, Fufu Yu, Junjie Li, Qiong Jia, Shouhong Ding*  
+  [[paper]](https://arxiv.org/abs/2303.04497)
+
+### *4. Modality Interaction*
+
+> [!NOTE]
+> #### *4.1. Intra-Modality Interaction*
+
+[4.1.1. Visual Intra-modal Interaction](#411-visual-intra-modal-interaction) · [4.1.2. Textual Intra-modal Interaction](#412-textual-intra-modal-interaction) · [4.1.3. Dual Intra-modal Interaction](#413-dual-intra-modal-interaction)
+
+> [!NOTE]
+> ##### *4.1.1. Visual Intra-modal Interaction*
+
+#### 2024
+
+- `[2024 AAAI]` **Adaptive Uncertainty-based Learning for Text-based Person Retrieval (AUL)** *Shenshen Li, Chen He, Xing Xu, Fumin Shen, Yang Yang, Heng Tao Shen*  
+  [[paper]](https://doi.org/10.1609/aaai.v38i4.28101) [[code]](https://github.com/CFM-MSG/Code-AUL)
+
+- `[2024 Image and Vision Computing]` **EESSO: Exploiting Extreme and Smooth Signals via Omni-frequency Learning for Text-based Person Retrieval (EESSO)** *Jingyi Xue, Zijie Wang, Guan-Nan Dong, Aichun Zhu*  
+  [[paper]](https://doi.org/10.1016/j.imavis.2024.104912)
+
+> [!NOTE]
+> ##### *4.1.2. Textual Intra-modal Interaction*
+
+#### 2025
+
+- `[2025 TMM]` **Multi-modal Reference Learning for Fine-grained Text-to-image Retrieval (MMRef)** *Zehong Ma, Hao Chen, Wei Zeng, Limin Su, Shiliang Zhang*  
+  [[paper]](https://arxiv.org/abs/2504.07718v1)
+
+#### 2023
+
+- `[2023 TMM]` **Refined Knowledge Transfer for Language-based Person Search (RKT)** *Ziqiang Wu, Bingpeng Ma, Hong Chang, Shiguang Shan*  
+  [[paper]](https://doi.org/10.1109/tmm.2023.3251104)
+
+#### 2020
+
+- `[2020 MM]` **Textual Dependency Embedding for Person Search by Language (TDE)** *Kai Niu, Yan Huang, Liang Wang*  
+  [[paper]](https://doi.org/10.1145/3394171.3413895)
+
+> [!NOTE]
+> ##### *4.1.3. Dual Intra-modal Interaction*
+
+#### 2023
+
+- `[2023 MM]` **Learning Comprehensive Representations with Richer Self for Text-to-image Person Re-identification (LCR²S)** *Shuanglin Yan, Neng Dong, Jun Liu, Liyan Zhang, Jinhui Tang*  
+  [[paper]](https://arxiv.org/abs/2310.11210v1)
+
+#### 2022
+
+- `[2022 Neurocomputing]` **TIPCB: A Simple but Effective Part-based Convolutional Baseline for Text-based Person Search (TIPCB)** *Yuhao Chen, Guoqing Zhang, Yujiang Lu, Zhenxing Wang, Yuhui Zheng*  
+  [[paper]](https://arxiv.org/abs/2105.11628v1) [[code]](https://github.com/OrangeYHChen/TIPCB)
+
+#### 2021
+
+- `[2021 Neurocomputing]` **Divide-and-merge the Embedding Space for Cross-modality Person Search (DME)** *Chengji Wang, Zhiming Luo, Zhun Zhong, Shaozi Li*  
+  [[paper]](https://doi.org/10.1016/j.neucom.2021.08.058)
+
+> [!NOTE]
+> #### *4.2. Inter-Modality Interaction*
+
+Methods spanning multiple interaction types appear once, under a representative subgroup.
+
+[4.2.1. Global Feature Interaction](#421-global-feature-interaction) · [4.2.2. Local Feature Interaction](#422-local-feature-interaction) · [4.2.3. Multi-Granularity Feature Interaction](#423-multi-granularity-feature-interaction) · [4.2.4. Proxy Task-Guided Interaction](#424-proxy-task-guided-interaction) · [4.2.5. Large Model-Driven Interaction](#425-large-model-driven-interaction)
+
+> [!NOTE]
+> ##### *4.2.1. Global Feature Interaction*
+
+#### 2022
+
+- `[2022 AIEA]` **Person Re-identification from Text to Image Based on Mutual Teaching (MTReID)** *Chengjian MO*  
+  [[paper]](https://doi.org/10.1117/12.2646862)
+
+> [!NOTE]
+> ##### *4.2.2. Local Feature Interaction*
+
+#### 2023
+
+- `[2023 KBS]` **Text-based Person Search via Local-Relational-Global Fine-grained Alignment (CM-LRGNet)** *Junfeng Zhou, Baigang Huang, Wenjiao Fan, Ziqian Cheng, Zhuoyi Zhao, Weifeng Zhang*  
+  [[paper]](https://doi.org/10.1016/j.knosys.2023.110253) [[code]](https://github.com/zhangweifeng1218/Text-based-Person-Search)
+
+- `[2023 MM]` **Pedestrian-specific Bipartite-aware Similarity Learning for Text-based Person Retrieval (PBSL)** *Fei Shen, Xiangbo Shu, Xiaoyu Du, Jinhui Tang*  
+  [[paper]](https://doi.org/10.1145/3581783.3612009)
+
+- `[2023 ICME]` **Multi-level Part-aware Feature Disentangling for Text-based Person Search (MPFD)** *Yuhao Chen, Guoqing Zhang, Hongwei Zhang, Yuhui Zheng, Weisi Lin*  
+  [[paper]](https://doi.org/10.1109/icme55011.2023.00476)
+
+#### 2022
+
+- `[2022 TCSVT]` **Transformer-based Language-Person Search with Multiple Region Slicing (T-MRS)** *Hui Li, Jimin Xiao, Mingjie Sun, Eng Gee Lim, Yao Zhao*  
+  [[paper]](https://doi.org/10.1109/tcsvt.2021.3073718)
+
+#### 2021
+
+- `[2021 TIP]` **Cross-modal Knowledge Adaptation for Language-based Person Search (CMKA)** *Yucheng Chen, Rui Huang, Hong Chang, Chuanqi Tan, Tao Xue, Bingpeng Ma*  
+  [[paper]](https://doi.org/10.1109/tip.2021.3068825)
+
+- `[2021 arXiv]` **Contextual Non-local Alignment over Full-scale Representation for Text-based Person Search (NAFS with RVN)** *Chenyang Gao, Guanyu Cai, Xinyang Jiang, Feng Zheng, Jun Zhang, Yifei Gong, Pai Peng, Xiaowei Guo, Xing Sun*  
+  [[paper]](https://arxiv.org/abs/2101.03036v1) [[code]](https://github.com/TencentYoutuResearch/PersonReID-NAFS)
+
+> [!NOTE]
+> ##### *4.2.3. Multi-Granularity Feature Interaction*
+
+#### 2025
+
+- `[2025 TIFS]` **Granularity-aware Hyperbolic Representation for Text-based Person Search (GAHR)** *Chenghuan Qi, Xi Yang, Nannan Wang, Xinbo Gao*  
+  [[paper]](https://doi.org/10.1109/tifs.2025.3574970)
+
+#### 2024
+
+- `[2024 TNNLS]` **Image-specific Information Suppression and Implicit Local Alignment for Text-based Person Search (MANet)** *Shuanglin Yan, Hao Tang, Liyan Zhang, Jinhui Tang*  
+  [[paper]](https://arxiv.org/abs/2208.14365v2) [[code]](https://github.com/shuanglinyan/MANet)
+
+#### 2023
+
+- `[2023 Electronics Letters]` **Multi-level Cross-modality Learning Framework for Text-based Person Re-identification (MCL)** *Tinghui Wu, Shuhe Zhang, Dihu Chen, Haifeng Hu*  
+  [[paper]](https://doi.org/10.1049/ell2.12975)
+
+- `[2023 Frontiers in Physics]` **Feature Semantic Alignment and Information Supplement for Text-based Person Search (ESFE+ISN)** *Hang Zhou, Fan Li, Xuening Tian, Yuling Huang*  
+  [[paper]](https://doi.org/10.3389/fphy.2023.1192412)
+
+- `[2023 TMM]` **Asymmetric Cross-scale Alignment for Text-based Person Search (ACSA)** *Zhong Ji, Junhua Hu, Deyin Liu, Lin Yuanbo Wu, Ye Zhao*  
+  [[paper]](https://arxiv.org/abs/2212.11958v1) [[code]](https://github.com/mul-hjh/ACSA)
+
+#### 2021
+
+- `[2021 IJCAI]` **Text-based Person Search via Multi-granularity Embedding Learning (MGEL)** *Chengji Wang, Zhiming Luo, Yaojin Lin, Shaozi Li*  
+  [[paper]](https://doi.org/10.24963/ijcai.2021/148)
+
+#### 2020
+
+- `[2020 TIP]` **Improving Description-based Person Re-identification by Multi-granularity Image-Text Alignments (MIA)** *Kai Niu, Yan Huang, Wanli Ouyang, Liang Wang*  
+  [[paper]](https://arxiv.org/abs/1906.09610v1)
+
+- `[2020 MM]` **Hierarchical Gumbel Attention Network for Text-based Person Search (HGAN)** *Kecheng Zheng, Wu Liu, Jiawei Liu, Zheng-Jun Zha, Tao Mei*  
+  [[paper]](https://doi.org/10.1145/3394171.3413864)
+
+#### 2018
+
+- `[2018 ECCV]` **Improving Deep Visual Representation for Person Re-identification by Global and Local Image-Language Association (GL-ILA)** *Dapeng Chen, Hongsheng Li, Xihui Liu, Yantao Shen, Jing Shao, Zejian Yuan, Xiaogang Wang*  
+  [[paper]](https://openaccess.thecvf.com/content_ECCV_2018/html/Dapeng_Chen_Improving_Deep_Visual_ECCV_2018_paper.html)
+
+> [!NOTE]
+> ##### *4.2.4. Proxy Task-Guided Interaction*
+
+#### 2025
+
+- `[2025 TOMM]` **MARS: Paying More Attention to Visual Attributes for Text-based Person Search (MARS)** *Alex Ergasti, Tomaso Fontanini, Claudio Ferrari, Massimo Bertozzi, Andrea Prati*  
+  [[paper]](https://arxiv.org/abs/2407.04287v1) [[code]](https://github.com/ErgastiAlex/MARS)
+
+#### 2024
+
+- `[2024 ICME]` **LAIP: Learning Local Alignment from Image-Phrase Modeling for Text-based Person Search (LAIP)** *Yu Wu, Haiguang Wang, Mengxia Wu, Min Cao, Min Zhang*  
+  [[paper]](https://arxiv.org/abs/2406.10845v2)
+
+#### 2023
+
+- `[2023 arXiv]` **Calibrating Cross-modal Feature for Text-based Person Searching (CMCalib)** *Donglai Wei, Sipeng Zhang, Tong Yang, Jing Liu*  
+  [[paper]](https://arxiv.org/abs/2304.02278v1)
+
+- `[2023 arXiv]` **Unleashing the Imagination of Text: A Novel Framework for Text-to-image Person Retrieval via Exploring the Power of Words (UIT)**
+
+- `[2023 arXiv]` **Learning Transferable Pedestrian Representation from Multimodal Information Supervision (VAL-PAT)** *Liping Bao, Longhui Wei, Xiaoyu Qiu, Wengang Zhou, Houqiang Li, Qi Tian*  
+  [[paper]](https://arxiv.org/abs/2304.05554v1)
+
+- `[2023 CVPR]` **Cross-modal Implicit Relation Reasoning and Aligning for Text-to-image Person Retrieval (IRRA)** *Ding Jiang, Mang Ye*  
+  [[paper]](https://openaccess.thecvf.com/content/CVPR2023/html/Jiang_Cross-Modal_Implicit_Relation_Reasoning_and_Aligning_for_Text-to-Image_Person_Retrieval_CVPR_2023_paper.html) [[code]](https://github.com/anosorae/IRRA)
+
+#### 2022
+
+- `[2022 IEEE SPL]` **Joint Token and Feature Alignment Framework for Text-based Person Search (TFAF)** *Shangze Li, Andong Lu, Yan Huang, Chenglong Li, Liang Wang*  
+  [[paper]](https://doi.org/10.1109/lsp.2022.3217682)
+
+- `[2022 ECCV Workshops]` **See Finer, See More: Implicit Modality Alignment for Text-based Person Retrieval (IVT)** *Xiujun Shu, Wei Wen, Haoqian Wu, Keyu Chen, Yiran Song, Ruizhi Qiao, Bo Ren, Xiao Wang*  
+  [[paper]](https://arxiv.org/abs/2208.08608v2) [[code]](https://github.com/TencentYoutuResearch/PersonRetrieval-IVT)
+
+> [!NOTE]
+> ##### *4.2.5. Large Model-Driven Interaction*
+
+#### 2025
+
+- `[2025 CVPR]` **Human-centered Interactive Learning via MLLMs for Text-to-image Person Re-identification (ICL)** *Yang Qin, Chao Chen, Zhihang Fu, Dezhong Peng, Xi Peng, Peng Hu*  
+  [[paper]](https://openaccess.thecvf.com/content/CVPR2025/html/Qin_Human-centered_Interactive_Learning_via_MLLMs_for_Text-to-Image_Person_Re-identification_CVPR_2025_paper.html) [[code]](https://github.com/QinYang79/ICL)
+
+- `[2025 CVPR]` **Modeling Thousands of Human Annotators for Generalizable Text-to-image Person Re-identification (HAM)** *Jiayu Jiang, Changxing Ding, Wentao Tan, Junhong Wang, Jin Tao, Xiangmin Xu*  
+  [[paper]](https://openaccess.thecvf.com/content/CVPR2025/html/Jiang_Modeling_Thousands_of_Human_Annotators_for_Generalizable_Text-to-Image_Person_Re-identification_CVPR_2025_paper.html) [[code]](https://github.com/MPI-Lab/HAM)
+
+#### 2024
+
+- `[2024 NeurIPS]` **PLIP: Language-Image Pre-training for Person Representation Learning (PLIP)** *Jialong Zuo, Jiahao Hong, Feng Zhang, Changqian Yu, Hanyu Zhou, Changxin Gao, Nong Sang, Jingdong Wang*  
+  [[paper]](https://arxiv.org/abs/2305.08386v2) [[code]](https://github.com/Zplusdragon/PLIP)
+
+- `[2024 MM]` **Fine-grained Semantic Alignment with Transferred Person-SAM for Text-based Person Retrieval (SAP-SAM)** *Yihao Wang, Meng Yang, Rui Cao*  
+  [[paper]](https://doi.org/10.1145/3664647.3681553) [[code]](https://github.com/xbdxwyh/SAP-SAM-main)
+
+- `[2024 AAAI]` **Diverse Person: Customize Your Own Dataset for Text-based Person Search (DP)** *Zifan Song, Guosheng Hu, Cairong Zhao*  
+  [[paper]](https://doi.org/10.1609/aaai.v38i5.28298) [[code]](https://github.com/Vill-Lab/2024-AAAI-DP)
+
+#### 2023
+
+- `[2023 ICCV]` **Unified Pre-training with Pseudo Texts for Text-to-image Person Re-identification (UniPT)** *Zhiyin Shao, Xinyu Zhang, Changxing Ding, Jian Wang, Jingdong Wang*  
+  [[paper]](https://openaccess.thecvf.com/content/ICCV2023/html/Shao_Unified_Pre-Training_with_Pseudo_Texts_for_Text-To-Image_Person_Re-Identification_ICCV_2023_paper.html) [[code]](https://github.com/ZhiyinShao-H/UniPT)
+
+> [!NOTE]
+> #### *4.3. Hybrid Interaction Approach*
+
+#### 2023
+
+- `[2023 TIP]` **Improving Inconspicuous Attributes Modeling for Person Search by Language (ASAMN)** *Kai Niu, Tao Huang, Linjiang Huang, Liang Wang, Yanning Zhang*  
+  [[paper]](https://doi.org/10.1109/tip.2023.3285426)
+
+- `[2023 ICMR]` **Multi-granularity Separation Network for Text-based Person Retrieval with Bidirectional Refinement Regularization (MSN-BRR)** *Shenshen Li, Xing Xu, Fumin Shen, Yang Yang*  
+  [[paper]](https://doi.org/10.1145/3591106.3592253)
+
+- `[2023 Applied Sciences]` **PMG—Pyramidal Multi-granular Matching for Text-based Person Re-identification (PMG)** *Chao Liu, Jingyi Xue, Zijie Wang, Aichun Zhu*  
+  [[paper]](https://doi.org/10.3390/app132111876)
+
+#### 2022
+
+- `[2022 ECCV]` **A Simple and Robust Correlation Filtering Method for Text-based Person Search (SRCF)** *Wei Suo, Mengyang Sun, Kai Niu, Yiqi Gao, Peng Wang, Yanning Zhang, Qi Wu*  
+  [[paper]](https://www.ecva.net/papers/eccv_2022/papers_ECCV/html/1479_ECCV_2022_paper.php) [[code]](https://github.com/Suo-Wei/SRCF)
+
+- `[2022 AAAI]` **AXM-Net: Implicit Cross-modal Feature Alignment for Person Re-identification (AXM-Net)** *Ammarah Farooq, Muhammad Awais, Josef Kittler, Syed Safwan Khalid*  
+  [[paper]](https://arxiv.org/abs/2101.08238v3)
+
+- `[2022 KBS]` **SUM: Serialized Updating and Matching for Text-based Person Retrieval (SUM)** *Zijie Wang, Aichun Zhu, Jingyi Xue, Daihong Jiang, Chao Liu, Yifeng Li, Fangqiang Hu*  
+  [[paper]](https://doi.org/10.1016/j.knosys.2022.108891)
+
+#### 2021
+
+- `[2021 TIP]` **Learning Aligned Image-Text Representations Using Graph Attentive Relational Network (GARN)** *Ya Jing, Wei Wang, Liang Wang, Tieniu Tan*  
+  [[paper]](https://doi.org/10.1109/tip.2020.3048627)
+
+## 2. Datasets
+
+**Paper** links describe each dataset; **Access** links lead to official instructions and may require an application. Statistics follow the survey; source discrepancies are recorded in the [link audit](docs/link-audit-2026-11-03.md).
+
+<details>
+<summary>Abbreviations and evaluation protocols</summary>
+
+**Abbreviations:** IDs = person identities; EN/VI/ZH = English/Vietnamese/Chinese; Attr. = attributes; AMT = Amazon Mechanical Turk; CS = closed-set; PT = pre-training only; T2I = text-to-image retrieval; Bi = bidirectional retrieval; – = not reported/not applicable in the source table.
+
+</details>
 
 ### Standard TBPS Benchmarks
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th align="left" width="16%">Dataset</th>
-      <th align="center" width="6%">Year</th>
-      <th align="center" width="8%">IDs</th>
-      <th align="center" width="10%">Images</th>
-      <th align="center" width="10%">Texts</th>
-      <th align="center" width="6%">Lang.</th>
-      <th align="center" width="8%">Multi</th>
-      <th align="center" width="13%">Source</th>
-      <th align="center" width="7%">Protocol</th>
-      <th align="center" width="8%">Retrieval</th>
-      <th align="center" width="8%">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="16%"><a href="https://openaccess.thecvf.com/content_cvpr_2017/html/Li_Person_Search_With_CVPR_2017_paper.html"><strong>CUHK-PEDES</strong></a></td>
-      <td align="center" width="6%">2017</td>
-      <td align="center" width="8%">13,003</td>
-      <td align="center" width="10%">40,206</td>
-      <td align="center" width="10%">80,412</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">AMT captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Benchmark</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%"><a href="https://arxiv.org/abs/2107.12666"><strong>ICFG-PEDES</strong></a></td>
-      <td align="center" width="6%">2021</td>
-      <td align="center" width="8%">4,102</td>
-      <td align="center" width="10%">54,522</td>
-      <td align="center" width="10%">54,522</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Identity captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Benchmark</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%"><a href="https://arxiv.org/abs/2109.05534"><strong>RSTPReid</strong></a></td>
-      <td align="center" width="6%">2021</td>
-      <td align="center" width="8%">4,101</td>
-      <td align="center" width="10%">20,505</td>
-      <td align="center" width="10%">41,010</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Real-world captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Benchmark</td>
-    </tr>
-  </tbody>
-</table>
+| Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| CUHK-PEDES | 2017 | 13,003 | 40,206 | 80,412 | EN | – | AMT captions | CS | T2I | Benchmark | [Paper](https://openaccess.thecvf.com/content_cvpr_2017/html/Li_Person_Search_With_CVPR_2017_paper.html) · [Access](https://github.com/ShuangLI59/Person-Search-with-Natural-Language-Description) |
+| ICFG-PEDES | 2021 | 4,102 | 54,522 | 54,522 | EN | – | Identity captions | CS | T2I | Benchmark | [Paper](https://arxiv.org/abs/2107.12666) · [Access](https://github.com/zifyloo/SSAN) |
+| RSTPReid | 2021 | 4,101 | 20,505 | 41,010 | EN | – | Real-world captions | CS | T2I | Benchmark | [Paper](https://arxiv.org/abs/2109.05534) · [Access](https://github.com/NjtechCVLab/RSTPReid-Dataset) |
 
 ### Multimodal Retrieval Datasets
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th align="left" width="16%">Dataset</th>
-      <th align="center" width="6%">Year</th>
-      <th align="center" width="8%">IDs</th>
-      <th align="center" width="10%">Images</th>
-      <th align="center" width="10%">Texts</th>
-      <th align="center" width="6%">Lang.</th>
-      <th align="center" width="8%">Multi</th>
-      <th align="center" width="13%">Source</th>
-      <th align="center" width="7%">Protocol</th>
-      <th align="center" width="8%">Retrieval</th>
-      <th align="center" width="8%">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="16%">TriReID</td>
-      <td align="center" width="6%">2022</td>
-      <td align="center" width="8%">200</td>
-      <td align="center" width="10%">5,600</td>
-      <td align="center" width="10%">5,600</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Sketch</td>
-      <td align="center" width="13%">Tri-modal pairs</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I/Bi</td>
-      <td align="center" width="8%">Multimodal</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">Tri-CUHK-PEDES</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">13,003</td>
-      <td align="center" width="10%">40,206</td>
-      <td align="center" width="10%">80,440</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Sketch</td>
-      <td align="center" width="13%">Synthetic sketch</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I/Bi</td>
-      <td align="center" width="8%">Multimodal</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">Tri-ICFG-PEDES</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">4,102</td>
-      <td align="center" width="10%">54,522</td>
-      <td align="center" width="10%">54,522</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Sketch</td>
-      <td align="center" width="13%">Synthetic sketch</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I/Bi</td>
-      <td align="center" width="8%">Multimodal</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">Tri-RSTPReid</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">4,101</td>
-      <td align="center" width="10%">20,505</td>
-      <td align="center" width="10%">41,010</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Sketch</td>
-      <td align="center" width="13%">Synthetic sketch</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I/Bi</td>
-      <td align="center" width="8%">Multimodal</td>
-    </tr>
-  </tbody>
-</table>
+| Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| TriReID | 2022 | 200 | 5,600 | 5,600 | EN | Sketch | Tri-modal pairs | CS | T2I/Bi | Multimodal | [Paper](https://doi.org/10.1145/3512527.3531397) |
+| Tri-CUHK-PEDES | 2023 | 13,003 | 40,206 | 80,440 | EN | Sketch | Synthetic sketch | CS | T2I/Bi | Multimodal | [Paper](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Towards_Modality-Agnostic_Person_Re-Identification_With_Descriptive_Query_CVPR_2023_paper.html) · [Access](https://github.com/ccq195/UNIReID) |
+| Tri-ICFG-PEDES | 2023 | 4,102 | 54,522 | 54,522 | EN | Sketch | Synthetic sketch | CS | T2I/Bi | Multimodal | [Paper](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Towards_Modality-Agnostic_Person_Re-Identification_With_Descriptive_Query_CVPR_2023_paper.html) · [Access](https://github.com/ccq195/UNIReID) |
+| Tri-RSTPReid | 2023 | 4,101 | 20,505 | 41,010 | EN | Sketch | Synthetic sketch | CS | T2I/Bi | Multimodal | [Paper](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Towards_Modality-Agnostic_Person_Re-Identification_With_Descriptive_Query_CVPR_2023_paper.html) · [Access](https://github.com/ccq195/UNIReID) |
 
 ### Large-Scale Pre-training Datasets
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th align="left" width="16%">Dataset</th>
-      <th align="center" width="6%">Year</th>
-      <th align="center" width="8%">IDs</th>
-      <th align="center" width="10%">Images</th>
-      <th align="center" width="10%">Texts</th>
-      <th align="center" width="6%">Lang.</th>
-      <th align="center" width="8%">Multi</th>
-      <th align="center" width="13%">Source</th>
-      <th align="center" width="7%">Protocol</th>
-      <th align="center" width="8%">Retrieval</th>
-      <th align="center" width="8%">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="16%">MALS</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="10%">1,510,330</td>
-      <td align="center" width="10%">1,510,330</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Attr.</td>
-      <td align="center" width="13%">Diffusion+BLIP</td>
-      <td align="center" width="7%">PT</td>
-      <td align="center" width="8%">Bi</td>
-      <td align="center" width="8%">Pre-train</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">LUPerson-T</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="10%">1.3M</td>
-      <td align="center" width="10%">1.3M</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Auto captions</td>
-      <td align="center" width="7%">PT</td>
-      <td align="center" width="8%">Bi</td>
-      <td align="center" width="8%">Pre-train</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">SYNTH-PEDES</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">312,321</td>
-      <td align="center" width="10%">4,791,711</td>
-      <td align="center" width="10%">12,138,157</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Auto captions</td>
-      <td align="center" width="7%">PT</td>
-      <td align="center" width="8%">Bi</td>
-      <td align="center" width="8%">Pre-train</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">LUPerson-TA</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="10%">–</td>
-      <td align="center" width="10%">–</td>
-      <td align="center" width="6%">EN</td>
-      <td align="center" width="8%">Attr.</td>
-      <td align="center" width="13%">Image-text-attr.</td>
-      <td align="center" width="7%">PT</td>
-      <td align="center" width="8%">Bi</td>
-      <td align="center" width="8%">Pre-train</td>
-    </tr>
-  </tbody>
-</table>
+| Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| MALS | 2023 | – | 1,510,330 | 1,510,330 | EN | Attr. | Diffusion+BLIP | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2306.02898) · [Access](https://github.com/Shuyu-XJTU/APTM) |
+| LUPerson-T | 2023 | – | 1.3M | 1.3M | EN | – | Auto captions | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2309.01420) · [Access](https://github.com/ZhiyinShao-H/UniPT) |
+| SYNTH-PEDES | 2023 | 312,321 | 4,791,711 | 12,138,157 | EN | – | Auto captions | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2305.08386) · [Access](https://github.com/Zplusdragon/PLIP) |
+| LUPerson-TA | 2023 | – | – | – | EN | Attr. | Image-text-attr. | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2304.05554v1) |
 
 ### Cross-Lingual Datasets
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th align="left" width="16%">Dataset</th>
-      <th align="center" width="6%">Year</th>
-      <th align="center" width="8%">IDs</th>
-      <th align="center" width="10%">Images</th>
-      <th align="center" width="10%">Texts</th>
-      <th align="center" width="6%">Lang.</th>
-      <th align="center" width="8%">Multi</th>
-      <th align="center" width="13%">Source</th>
-      <th align="center" width="7%">Protocol</th>
-      <th align="center" width="8%">Retrieval</th>
-      <th align="center" width="8%">Usage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="left" width="16%">VnPersonSearch</td>
-      <td align="center" width="6%">2020</td>
-      <td align="center" width="8%">72</td>
-      <td align="center" width="10%">445</td>
-      <td align="center" width="10%">890</td>
-      <td align="center" width="6%">VI</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Vietnamese captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Cross-lingual</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">3000VnPersonSearch</td>
-      <td align="center" width="6%">2022</td>
-      <td align="center" width="8%">3,000</td>
-      <td align="center" width="10%">6,302</td>
-      <td align="center" width="10%">12,602</td>
-      <td align="center" width="6%">VI</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Vietnamese captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Cross-lingual</td>
-    </tr>
-    <tr>
-      <td align="left" width="16%">PRW-TPS-CN</td>
-      <td align="center" width="6%">2023</td>
-      <td align="center" width="8%">993</td>
-      <td align="center" width="10%">11,776</td>
-      <td align="center" width="10%">47,102</td>
-      <td align="center" width="6%">ZH/EN</td>
-      <td align="center" width="8%">–</td>
-      <td align="center" width="13%">Bilingual captions</td>
-      <td align="center" width="7%">CS</td>
-      <td align="center" width="8%">T2I</td>
-      <td align="center" width="8%">Cross-lingual</td>
-    </tr>
-  </tbody>
-</table>
+| Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| VnPersonSearch | 2020 | 72 | 445 | 890 | VI | – | Vietnamese captions | CS | T2I | Cross-lingual | [Paper](https://doi.org/10.1007/978-981-15-3380-8_41) |
+| 3000VnPersonSearch | 2022 | 3,000 | 6,302 | 12,602 | VI | – | Vietnamese captions | CS | T2I | Cross-lingual | [Paper](https://doi.org/10.1007/s11042-022-12138-1) |
+| PRW-TPS-CN | 2023 | 993 | 11,776 | 47,102 | ZH/EN | – | Bilingual captions | CS | T2I | Cross-lingual | [Paper](https://arxiv.org/abs/2312.14834) · [Access](https://github.com/Torches97/PRW-TPS-CN) |
+
+### Link notes
+
+<details>
+<summary>Link availability, missing resources, and dataset notes</summary>
+
+Links last reviewed **2026-11-03**. Unconfirmed resources are omitted; publisher access may vary.
+
+- Each paper entry shows one paper link, preferring a verified public manuscript or proceedings page, and code where confirmed. Alternate identifiers remain in the link audit. A real DOI may still lead to a subscription or bot-verification page.
+- Omitted author, paper, or code fields mean that a matching source has not been confirmed. UIT remains unverified; no names or links have been inferred.
+- Code links identify author/lab releases. Availability does not imply that the implementation has been reproduced.
+- Dataset Access links lead to official instructions, rather than guaranteed unrestricted downloads. LUPerson-TA has no confirmed dataset release; TriReID and the two Vietnamese datasets have no confirmed official access URL.
+- PRW-TPS-CN has conflicting image/frame counts between the survey and author repository. The table retains the survey value pending clarification.
+
+See the [2026-11-03 link audit](docs/link-audit-2026-11-03.md) for individual access restrictions and unresolved entries.
+
+</details>
+
+## 3. Citation
+
+```bibtex
+@article{shi2026survey,
+  title   = {A Survey on Text-Based Person Search},
+  author  = {Shi, Haitao and Liu, Meng and Li, Yongqi and Han, Xianjing and He, Yangyuan and Nie, Liqiang},
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year    = {2026},
+  doi     = {10.1109/TPAMI.2026.3734830}
+}
+```
+
+## 4. Contributing
+
+Corrections and additions are welcome. Include the full title, ordered author list, publication venue/year, and a matching publisher or versioned arXiv link. Add code only when the paper, author project, or repository clearly establishes its identity. Leave unverified fields blank, and distinguish a dataset's paper from its access instructions.
