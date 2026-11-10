@@ -1,6 +1,6 @@
 <a id="awesome-text-based-person-search"></a>
 
-# Awesome Text-Based Person Search [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<h1 align="center">Awesome Text-Based Person Search <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a></h1>
 
 <h3 align="center">
 🔥 <a href="https://doi.org/10.1109/TPAMI.2026.3734830">A Survey on Text-Based Person Search</a>
@@ -11,8 +11,8 @@
     <a href="mailto:shihaitao1111@gmail.com">Haitao Shi</a><sup>1</sup>, <a href="mailto:mengliu.sdu@gmail.com">Meng Liu</a><sup>1</sup>, <a href="mailto:liyongqi0@gmail.com">Yongqi Li</a><sup>2</sup>, <a href="mailto:hanxianjing2018@gmail.com">Xianjing Han</a><sup>3</sup>, <a href="mailto:hyyuan@st.cupk.edu.cn">Yangyuan He</a><sup>4</sup>, <a href="mailto:nieliqiang@gmail.com">Liqiang Nie</a><sup>5</sup>
   </p>
   <p>
-    <sup>1</sup>Shandong University, <sup>2</sup>School of Electrical and Electronic Engineering, Nanyang Technological University,<br>
-    <sup>3</sup>Grab-NUS AI Lab, National University of Singapore, <sup>4</sup>China University of Petroleum-Beijing at Karamay,<br>
+    <sup>1</sup>Shandong University, <sup>2</sup>The Hong Kong Polytechnic University,<br>
+    <sup>3</sup>School of Electrical and Electronic Engineering, Nanyang Technological University, <sup>4</sup>China University of Petroleum-Beijing at Karamay,<br>
     <sup>5</sup>Harbin Institute of Technology (Shenzhen)
   </p>
   <p>
@@ -40,7 +40,15 @@ A typical TBPS framework combines **visual and textual encoders**, **cross-modal
 ## Table of Contents
 
 - [Taxonomy of TBPS Approaches](#taxonomy-of-tbps-approaches)
-- [Datasets](#2-datasets)
+  - [1. External Knowledge](#1-external-knowledge)
+  - [2. Learning Objectives](#2-learning-objectives)
+  - [3. Encoder](#3-encoder)
+  - [4. Modality Interaction](#4-modality-interaction)
+- [Datasets](#datasets)
+  - [1. Standard TBPS Benchmarks](#1-standard-tbps-benchmarks)
+  - [2. Multimodal Retrieval Datasets](#2-multimodal-retrieval-datasets)
+  - [3. Large-Scale Pre-training Datasets](#3-large-scale-pre-training-datasets)
+  - [4. Cross-Lingual Datasets](#4-cross-lingual-datasets)
 
 ## Taxonomy of TBPS Approaches
 
@@ -48,7 +56,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 
 ### *1. External Knowledge*
 
-> [!NOTE]
 > #### *1.1. Pose Knowledge*
 
 #### 2023
@@ -66,7 +73,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2018 arXiv]` **Cascade Attention Network for Person Search: Both Image and Text-Image Similarity Selection (CAN)** *Ya Jing, Chenyang Si, Junbo Wang, Wei Wang, Liang Wang, Tieniu Tan*  
   [[paper]](https://arxiv.org/abs/1809.08440v1)
 
-> [!NOTE]
 > #### *1.2. Attribute Knowledge*
 
 #### 2022
@@ -94,7 +100,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2020 ECCV]` **ViTAA: Visual-Textual Attributes Alignment in Person Search by Natural Language (ViTAA)** *Zhe Wang, Zhiyuan Fang, Jun Wang, Yezhou Yang*  
   [[paper]](https://www.ecva.net/papers/eccv_2020/papers_ECCV/html/1593_ECCV_2020_paper.php) [[code]](https://github.com/Jarr0d/ViTAA)
 
-> [!NOTE]
 > #### *1.3. Color Knowledge*
 
 #### 2022
@@ -107,7 +112,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2021 ICCV]` **LapsCore: Language-guided Person Search via Color Reasoning (LapsCore)** *Yushuang Wu, Zizheng Yan, Xiaoguang Han, Guanbin Li, Changqing Zou, Shuguang Cui*  
   [[paper]](https://openaccess.thecvf.com/content/ICCV2021/html/Wu_LapsCore_Language-Guided_Person_Search_via_Color_Reasoning_ICCV_2021_paper.html)
 
-> [!NOTE]
 > #### *1.4. Body Parts Knowledge*
 
 #### 2023
@@ -122,7 +126,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 
 ### *2. Learning Objectives*
 
-> [!NOTE]
 > #### *2.1. Identity (ID) Loss*
 
 #### 2022
@@ -141,7 +144,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2019 ICCV Workshops]` **Fusing Two Directions in Cross-domain Adaption for Real Life Person Search by Language (FTD)** *Kai Niu, Yan Huang, Liang Wang*  
   [[paper]](https://doi.org/10.1109/iccvw.2019.00225)
 
-> [!NOTE]
 > #### *2.2. Matching Loss*
 
 #### 2024
@@ -154,7 +156,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2018 ECCV]` **Deep Cross-modal Projection Learning for Image-Text Matching (CMPM+CMPC)** *Ying Zhang, Huchuan Lu*  
   [[paper]](https://openaccess.thecvf.com/content_ECCV_2018/html/Ying_Zhang_Deep_Cross-Modal_Projection_ECCV_2018_paper.html) [[code]](https://github.com/YingZhangDUT/Cross-Modal-Projection-Learning)
 
-> [!NOTE]
 > #### *2.3. Ranking Loss*
 
 #### 2023
@@ -167,7 +168,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2019 arXiv]` **Visual-Textual Association with Hardest and Semi-hard Negative Pairs Mining for Person Search (HSNM)** *Jing Ge, Guangyu Gao, Zhen Liu*  
   [[paper]](https://arxiv.org/abs/1912.03083v1)
 
-> [!NOTE]
 > #### *2.4. Adversarial Loss*
 
 #### 2022
@@ -185,7 +185,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2019 MM]` **Deep Adversarial Graph Attention Convolution Network for Text-based Person Search (A-GANet)** *Jiawei Liu, Zheng-Jun Zha, Richang Hong, Meng Wang, Yongdong Zhang*  
   [[paper]](https://doi.org/10.1145/3343031.3350991)
 
-> [!NOTE]
 > #### *2.5. MLM/MIM Loss*
 
 #### 2024
@@ -198,7 +197,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2023 MM]` **Towards Unified Text-based Person Retrieval: A Large-scale Multi-Attribute and Language Search Benchmark (APTM)** *Shuyu Yang, Yinan Zhou, Zhedong Zheng, Yaxiong Wang, Li Zhu, Yujiao Wu*  
   [[paper]](https://arxiv.org/abs/2306.02898v4) [[code]](https://github.com/Shuyu-XJTU/APTM)
 
-> [!NOTE]
 > #### *2.6. Other Loss*
 
 #### 2024
@@ -218,7 +216,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 
 ### *3. Encoder*
 
-> [!NOTE]
 > #### *3.1. CNN-RNN/CNN-BERT Encoders*
 
 #### 2022
@@ -252,7 +249,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2017 CVPR]` **Person Search with Natural Language Description (GNA-RNN)** *Shuang Li, Tong Xiao, Hongsheng Li, Bolei Zhou, Dayu Yue, Xiaogang Wang*  
   [[paper]](https://openaccess.thecvf.com/content_cvpr_2017/html/Li_Person_Search_With_CVPR_2017_paper.html) [[code]](https://github.com/ShuangLI59/Person-Search-with-Natural-Language-Description)
 
-> [!NOTE]
 > #### *3.2. Transformer-Based Encoders*
 
 #### 2024
@@ -273,7 +269,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2022 ICASSP]` **Learning Semantic-aligned Feature Representation for Text-based Person Search (SAPF)** *Shiping Li, Min Cao, Min Zhang*  
   [[paper]](https://arxiv.org/abs/2112.06714v1) [[code]](https://github.com/reallsp/SAF)
 
-> [!NOTE]
 > #### *3.3. VLM-Based Encoders*
 
 #### 2024
@@ -288,12 +283,9 @@ The four perspectives overlap; cross-category entries count once in the distinct
 
 ### *4. Modality Interaction*
 
-> [!NOTE]
 > #### *4.1. Intra-Modality Interaction*
 
-[4.1.1. Visual Intra-modal Interaction](#411-visual-intra-modal-interaction) · [4.1.2. Textual Intra-modal Interaction](#412-textual-intra-modal-interaction) · [4.1.3. Dual Intra-modal Interaction](#413-dual-intra-modal-interaction)
 
-> [!NOTE]
 > ##### *4.1.1. Visual Intra-modal Interaction*
 
 #### 2024
@@ -304,7 +296,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2024 Image and Vision Computing]` **EESSO: Exploiting Extreme and Smooth Signals via Omni-frequency Learning for Text-based Person Retrieval (EESSO)** *Jingyi Xue, Zijie Wang, Guan-Nan Dong, Aichun Zhu*  
   [[paper]](https://doi.org/10.1016/j.imavis.2024.104912)
 
-> [!NOTE]
 > ##### *4.1.2. Textual Intra-modal Interaction*
 
 #### 2025
@@ -322,7 +313,6 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2020 MM]` **Textual Dependency Embedding for Person Search by Language (TDE)** *Kai Niu, Yan Huang, Liang Wang*  
   [[paper]](https://doi.org/10.1145/3394171.3413895)
 
-> [!NOTE]
 > ##### *4.1.3. Dual Intra-modal Interaction*
 
 #### 2023
@@ -340,14 +330,11 @@ The four perspectives overlap; cross-category entries count once in the distinct
 - `[2021 Neurocomputing]` **Divide-and-merge the Embedding Space for Cross-modality Person Search (DME)** *Chengji Wang, Zhiming Luo, Zhun Zhong, Shaozi Li*  
   [[paper]](https://doi.org/10.1016/j.neucom.2021.08.058)
 
-> [!NOTE]
 > #### *4.2. Inter-Modality Interaction*
 
 Methods spanning multiple interaction types appear once, under a representative subgroup.
 
-[4.2.1. Global Feature Interaction](#421-global-feature-interaction) · [4.2.2. Local Feature Interaction](#422-local-feature-interaction) · [4.2.3. Multi-Granularity Feature Interaction](#423-multi-granularity-feature-interaction) · [4.2.4. Proxy Task-Guided Interaction](#424-proxy-task-guided-interaction) · [4.2.5. Large Model-Driven Interaction](#425-large-model-driven-interaction)
 
-> [!NOTE]
 > ##### *4.2.1. Global Feature Interaction*
 
 #### 2022
@@ -355,7 +342,6 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2022 AIEA]` **Person Re-identification from Text to Image Based on Mutual Teaching (MTReID)** *Chengjian MO*  
   [[paper]](https://doi.org/10.1117/12.2646862)
 
-> [!NOTE]
 > ##### *4.2.2. Local Feature Interaction*
 
 #### 2023
@@ -382,7 +368,6 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2021 arXiv]` **Contextual Non-local Alignment over Full-scale Representation for Text-based Person Search (NAFS with RVN)** *Chenyang Gao, Guanyu Cai, Xinyang Jiang, Feng Zheng, Jun Zhang, Yifei Gong, Pai Peng, Xiaowei Guo, Xing Sun*  
   [[paper]](https://arxiv.org/abs/2101.03036v1) [[code]](https://github.com/TencentYoutuResearch/PersonReID-NAFS)
 
-> [!NOTE]
 > ##### *4.2.3. Multi-Granularity Feature Interaction*
 
 #### 2025
@@ -424,7 +409,6 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2018 ECCV]` **Improving Deep Visual Representation for Person Re-identification by Global and Local Image-Language Association (GL-ILA)** *Dapeng Chen, Hongsheng Li, Xihui Liu, Yantao Shen, Jing Shao, Zejian Yuan, Xiaogang Wang*  
   [[paper]](https://openaccess.thecvf.com/content_ECCV_2018/html/Dapeng_Chen_Improving_Deep_Visual_ECCV_2018_paper.html)
 
-> [!NOTE]
 > ##### *4.2.4. Proxy Task-Guided Interaction*
 
 #### 2025
@@ -458,7 +442,6 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2022 ECCV Workshops]` **See Finer, See More: Implicit Modality Alignment for Text-based Person Retrieval (IVT)** *Xiujun Shu, Wei Wen, Haoqian Wu, Keyu Chen, Yiran Song, Ruizhi Qiao, Bo Ren, Xiao Wang*  
   [[paper]](https://arxiv.org/abs/2208.08608v2) [[code]](https://github.com/TencentYoutuResearch/PersonRetrieval-IVT)
 
-> [!NOTE]
 > ##### *4.2.5. Large Model-Driven Interaction*
 
 #### 2025
@@ -485,7 +468,6 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2023 ICCV]` **Unified Pre-training with Pseudo Texts for Text-to-image Person Re-identification (UniPT)** *Zhiyin Shao, Xinyu Zhang, Changxing Ding, Jian Wang, Jingdong Wang*  
   [[paper]](https://openaccess.thecvf.com/content/ICCV2023/html/Shao_Unified_Pre-Training_with_Pseudo_Texts_for_Text-To-Image_Person_Re-Identification_ICCV_2023_paper.html) [[code]](https://github.com/ZhiyinShao-H/UniPT)
 
-> [!NOTE]
 > #### *4.3. Hybrid Interaction Approach*
 
 #### 2023
@@ -515,7 +497,7 @@ Methods spanning multiple interaction types appear once, under a representative 
 - `[2021 TIP]` **Learning Aligned Image-Text Representations Using Graph Attentive Relational Network (GARN)** *Ya Jing, Wei Wang, Liang Wang, Tieniu Tan*  
   [[paper]](https://doi.org/10.1109/tip.2020.3048627)
 
-## 2. Datasets
+## Datasets
 
 **Paper** links describe each dataset; **Access** links lead to official instructions and may require an application. Statistics follow the survey; source discrepancies are recorded in the [link audit](docs/link-audit-2026-11-03.md).
 
@@ -526,7 +508,7 @@ Methods spanning multiple interaction types appear once, under a representative 
 
 </details>
 
-### Standard TBPS Benchmarks
+### *1. Standard TBPS Benchmarks*
 
 | Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -534,7 +516,7 @@ Methods spanning multiple interaction types appear once, under a representative 
 | ICFG-PEDES | 2021 | 4,102 | 54,522 | 54,522 | EN | – | Identity captions | CS | T2I | Benchmark | [Paper](https://arxiv.org/abs/2107.12666) · [Access](https://github.com/zifyloo/SSAN) |
 | RSTPReid | 2021 | 4,101 | 20,505 | 41,010 | EN | – | Real-world captions | CS | T2I | Benchmark | [Paper](https://arxiv.org/abs/2109.05534) · [Access](https://github.com/NjtechCVLab/RSTPReid-Dataset) |
 
-### Multimodal Retrieval Datasets
+### *2. Multimodal Retrieval Datasets*
 
 | Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -543,7 +525,7 @@ Methods spanning multiple interaction types appear once, under a representative 
 | Tri-ICFG-PEDES | 2023 | 4,102 | 54,522 | 54,522 | EN | Sketch | Synthetic sketch | CS | T2I/Bi | Multimodal | [Paper](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Towards_Modality-Agnostic_Person_Re-Identification_With_Descriptive_Query_CVPR_2023_paper.html) · [Access](https://github.com/ccq195/UNIReID) |
 | Tri-RSTPReid | 2023 | 4,101 | 20,505 | 41,010 | EN | Sketch | Synthetic sketch | CS | T2I/Bi | Multimodal | [Paper](https://openaccess.thecvf.com/content/CVPR2023/html/Chen_Towards_Modality-Agnostic_Person_Re-Identification_With_Descriptive_Query_CVPR_2023_paper.html) · [Access](https://github.com/ccq195/UNIReID) |
 
-### Large-Scale Pre-training Datasets
+### *3. Large-Scale Pre-training Datasets*
 
 | Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -552,7 +534,7 @@ Methods spanning multiple interaction types appear once, under a representative 
 | SYNTH-PEDES | 2023 | 312,321 | 4,791,711 | 12,138,157 | EN | – | Auto captions | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2305.08386) · [Access](https://github.com/Zplusdragon/PLIP) |
 | LUPerson-TA | 2023 | – | – | – | EN | Attr. | Image-text-attr. | PT | Bi | Pre-train | [Paper](https://arxiv.org/abs/2304.05554v1) |
 
-### Cross-Lingual Datasets
+### *4. Cross-Lingual Datasets*
 
 | Dataset | Year | IDs | Images | Texts | Language | Additional modalities | Annotation source | Protocol | Retrieval | Usage | Resources |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -577,7 +559,7 @@ See the [2026-11-03 link audit](docs/link-audit-2026-11-03.md) for individual ac
 
 </details>
 
-## 3. Citation
+## Citation
 
 ```bibtex
 @article{shi2026survey,
@@ -589,6 +571,6 @@ See the [2026-11-03 link audit](docs/link-audit-2026-11-03.md) for individual ac
 }
 ```
 
-## 4. Contributing
+## Contributing
 
 Corrections and additions are welcome. Include the full title, ordered author list, publication venue/year, and a matching publisher or versioned arXiv link. Add code only when the paper, author project, or repository clearly establishes its identity. Leave unverified fields blank, and distinguish a dataset's paper from its access instructions.
