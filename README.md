@@ -35,7 +35,7 @@ A typical TBPS framework combines **visual and textual encoders**, **cross-modal
 
 ## News
 
-- [2026] The survey has been accepted for publication in [IEEE TPAMI](https://doi.org/10.1109/TPAMI.2026.3734830).
+- [2026.09.17] The survey has been accepted for publication in [IEEE TPAMI](https://doi.org/10.1109/TPAMI.2026.3734830).
 
 ## Table of Contents
 
@@ -559,8 +559,8 @@ See the [2026-11-03 link audit](docs/link-audit-2026-11-03.md) for individual ac
 
 </details>
 
-## Citation
-
+## Contact
+We hope this survey serves as a helpful resource for your research. If it does, a star 🌟 or a citation to the paper below would mean a lot to us.
 ```bibtex
 @article{shi2026survey,
   title   = {A Survey on Text-Based Person Search},
@@ -570,7 +570,4 @@ See the [2026-11-03 link audit](docs/link-audit-2026-11-03.md) for individual ac
   doi     = {10.1109/TPAMI.2026.3734830}
 }
 ```
-
-## Contributing
-
-Corrections and additions are welcome. Include the full title, ordered author list, publication venue/year, and a matching publisher or versioned arXiv link. Add code only when the paper, author project, or repository clearly establishes its identity. Leave unverified fields blank, and distinguish a dataset's paper from its access instructions.
+For any questions or feedback about this project, you are welcome to reach out at shihaitao1111@gmail.com.
